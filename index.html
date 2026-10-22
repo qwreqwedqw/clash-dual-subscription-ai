@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clash Dual Fusion: 双订阅合体智能分流生成器</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      min-height: 100vh;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="py-10 px-4">
+  <div class="max-w-4xl mx-auto space-y-8">
+    
+    <!-- 头部标题 -->
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-2">
+        <i class="fa-solid fa-wand-magic-sparkles text-indigo-400"></i>
+        <span>开源 · 免费 · 纯本地运行 · 零隐私上传</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+        Clash <span class="gradient-text">Dual Fusion</span>
+      </h1>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+        将两个 Clash 订阅智能融合：<br>
+        <span class="text-emerald-400 font-semibold">AI 专供优质纯净节点</span> + 
+        <span class="text-sky-400 font-semibold">日常视频走一般/劣质节点</span> + 
+        <span class="text-amber-400 font-semibold">国内游戏与 B 站全直连</span>
+      </p>
+    </div>
+
+    <!-- 架构流程图视窗 -->
+    <div class="glass-card rounded-2xl p-6 shadow-2xl space-y-4">
+      <h2 class="text-base font-semibold text-slate-300 flex items-center gap-2">
+        <i class="fa-solid fa-diagram-project text-indigo-400"></i>
+        <span>三路智能分流架构</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-900/60 border border-emerald-500/30 rounded-xl p-4 space-y-2">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold">
+            <i class="fa-solid fa-robot"></i>
+            <span>🤖 AI 纯净专线</span>
+          </div>
+          <p class="text-xs text-slate-400">
+            锁定订阅 1 (原生住宅/专线)。<br>
+            专供 <strong>Claude, OpenAI, Gemini, Antigravity, Cursor, OpenRouter</strong>。<br>
+            <span class="text-emerald-300">绝无 403 地区封锁，防封号。</span>
+          </p>
+        </div>
+        <div class="bg-slate-900/60 border border-sky-500/30 rounded-xl p-4 space-y-2">
+          <div class="flex items-center gap-2 text-sky-400 font-bold">
+            <i class="fa-solid fa-water"></i>
+            <span>🌊 一般/普通节点</span>
+          </div>
+          <p class="text-xs text-slate-400">
+            接管订阅 2 (几百G大流量)。<br>
+            负责 <strong>YouTube 4K, Netflix, GitHub, Twitter, Telegram, 下载</strong>。<br>
+            <span class="text-sky-300">跑满千兆带宽，不心疼流量。</span>
+          </p>
+        </div>
+        <div class="bg-slate-900/60 border border-amber-500/30 rounded-xl p-4 space-y-2">
+          <div class="flex items-center gap-2 text-amber-400 font-bold">
+            <i class="fa-solid fa-bolt"></i>
+            <span>🎮 国内全直连</span>
+          </div>
+          <p class="text-xs text-slate-400">
+            不经过任何代理。<br>
+            直连 <strong>Steam, WeGame, 原神, 崩铁, 瓦罗兰特, B站全站, 国考政务</strong>。<br>
+            <span class="text-amber-300">0ms 额外延迟，绝不消耗代理。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 输入与配置区 -->
+    <div class="glass-card rounded-2xl p-6 md:p-8 shadow-2xl space-y-6">
+      <div class="space-y-4">
+        <!-- 订阅 1 -->
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-emerald-400 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-gem text-emerald-400"></i>
+              1. 优质/纯净 AI 订阅链接 (如 TAG / 原生住宅 / 纯净专线)
+            </span>
+            <span class="text-xs text-slate-400">专供 AI 核心</span>
+          </label>
+          <input 
+            type="url" 
+            id="premiumUrl" 
+            placeholder="https://your-airport.com/api/v1/client/subscribe?token=xxxx" 
+            class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm font-mono"
+          />
+        </div>
+
+        <!-- 订阅 2 -->
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-sky-400 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-cloud-arrow-down text-sky-400"></i>
+              2. 一般/劣质节点订阅链接 (如几百G大流量 / 廉价备用机场)
+            </span>
+            <span class="text-xs text-slate-400">日常刷视频/下载</span>
+          </label>
+          <input 
+            type="url" 
+            id="generalUrl" 
+            placeholder="https://cheap-airport.com/link/xxxx?cla=1" 
+            class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm font-mono"
+          />
+        </div>
+      </div>
+
+      <!-- 高级选项折叠 -->
+      <details class="text-sm text-slate-400 cursor-pointer">
+        <summary class="font-medium hover:text-slate-200">高级选项 (默认已最佳调优)</summary>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3 pt-3 border-t border-slate-700/50">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Clash 本地混合端口 (Mixed Port)</label>
+            <input type="number" id="mixedPort" value="7897" class="w-full bg-slate-900/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">AI 节点地区过滤正则</label>
+            <input type="text" id="aiFilter" value="(?i)美国|日本|新加坡|US|JP|SG|United States|Japan|Singapore" class="w-full bg-slate-900/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 font-mono text-xs">
+          </div>
+        </div>
+      </details>
+
+      <!-- 操作按钮 -->
+      <div class="pt-2">
+        <button 
+          id="btnGenerate" 
+          onclick="generateConfig()"
+          class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold text-lg shadow-lg shadow-indigo-500/25 transition-all duration-200 flex items-center justify-center gap-2"
+        >
+          <i class="fa-solid fa-bolt"></i>
+          <span>一键生成合体配置文件</span>
+        </button>
+      </div>
+
+      <!-- 生成结果视窗 -->
+      <div id="resultArea" class="hidden space-y-4 pt-4 border-t border-slate-700/60">
+        <div class="flex items-center justify-between">
+          <span class="text-emerald-400 font-bold text-sm flex items-center gap-2">
+            <i class="fa-solid fa-circle-check"></i>
+            配置已成功生成！
+          </span>
+          <div class="flex gap-2">
+            <button onclick="copyConfig()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-medium text-slate-200 flex items-center gap-1.5 transition">
+              <i class="fa-regular fa-copy"></i>
+              <span>复制全文</span>
+            </button>
+            <button onclick="downloadConfig()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white flex items-center gap-1.5 transition shadow">
+              <i class="fa-solid fa-download"></i>
+              <span>下载 dual_fusion.yaml</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="relative">
+          <textarea 
+            id="outputYaml" 
+            rows="10" 
+            readonly 
+            class="w-full bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-xs font-mono text-slate-300 focus:outline-none"
+          ></textarea>
+        </div>
+
+        <!-- 导入指导步骤 -->
+        <div class="bg-indigo-950/40 border border-indigo-500/20 rounded-xl p-4 text-xs text-slate-300 space-y-2">
+          <div class="font-bold text-indigo-300 flex items-center gap-2 text-sm">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>导入 Clash Verge Rev 步骤：</span>
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-300 leading-relaxed">
+            <li>点击上方 <strong>“下载 dual_fusion.yaml”</strong> 按钮保存到电脑。</li>
+            <li>打开 <strong>Clash Verge Rev</strong> -> 点击左侧 <strong>【订阅】(Profiles)</strong> 菜单。</li>
+            <li>点击右上角 <strong>【新建】</strong> -> 类型选择 <strong>Local (本地配置)</strong>。</li>
+            <li>将下载好的 <code>dual_fusion.yaml</code> 拖拽到窗口中，或点击导入并选择该文件。</li>
+            <li>右键该配置卡片 -> 点击 <strong>【使用】(Select)</strong> 即可完成热加载！</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部版权与 GitHub -->
+    <div class="text-center text-xs text-slate-500 space-y-2">
+      <p>完全运行在客户端本地浏览器中，绝不上报或泄露你的任何订阅 Token。</p>
+      <p>开源项目托管于 GitHub · 遵循 MIT 协议</p>
+    </div>
+
+  </div>
+
+  <script>
+    const YAML_TEMPLATE = `# ==============================================================================
+# 🚀 Clash Dual Fusion: 双订阅合体智能分流配置
+# 📌 方案特点：
+#    1. 🤖 纯净好节点 (专供 AI：Claude / OpenAI / Gemini / 反重力 / Cursor / OpenRouter)
+#    2. 🌊 一般/劣质节点 (日常 4K 油管 / 网飞 / GitHub / 下载 / 海外社媒冲浪)
+#    3. 🎮 国内全直连 (Steam / WeGame / 国服手游端游 / B 站全站 / 政务系统 / 银行)
+# ==============================================================================
+
+mode: rule
+mixed-port: {{MIXED_PORT}}
+allow-lan: false
+log-level: info
+ipv6: false
+unified-delay: true
+keep-alive-interval: 15
+tcp-concurrent: true
+
+tun:
+  enable: true
+  stack: gvisor
+  auto-route: true
+  strict-route: false
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+
+dns:
+  enable: true
+  listen: 127.0.0.1:5334
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  use-system-hosts: true
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - 119.29.29.29
+
+proxy-providers:
+  # 订阅 1：纯净好节点 (贵重/专线/家宽/住宅，只给 AI 用)
+  premium_ai_provider:
+    type: http
+    url: "{{PREMIUM_URL}}"
+    interval: 86400
+    path: ./providers/premium_ai.yaml
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+
+  # 订阅 2：一般/劣质节点 (大流量/低成本，负责日常耗流量冲浪与视频)
+  general_provider:
+    type: http
+    url: "{{GENERAL_URL}}"
+    interval: 86400
+    path: ./providers/cheap_waterpipe.yaml
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+
+proxy-groups:
+  # 1. 【AI 专供组】(锁定订阅 1 的纯净节点)
+  - name: "🤖 纯净AI专用(优质节点)"
+    type: select
+    proxies:
+      - "⚡ 纯净AI自动测速"
+    use:
+      - premium_ai_provider
+    filter: "{{AI_FILTER}}"
+
+  # 1.1 AI 专供测速组
+  - name: "⚡ 纯净AI自动测速"
+    type: url-test
+    use:
+      - premium_ai_provider
+    filter: "{{AI_FILTER}}"
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  # 2. 【一般节点日常冲浪组】(走订阅 2，自动排除易被封锁地区)
+  - name: "🌐 日常浏览(一般节点)"
+    type: select
+    proxies:
+      - "⚡ 一般节点自动测速"
+      - "DIRECT"
+    use:
+      - general_provider
+    filter: "(?i)日本|新加坡|美国|JP|SG|US"
+
+  # 2.1 一般节点测速组
+  - name: "⚡ 一般节点自动测速"
+    type: url-test
+    use:
+      - general_provider
+    filter: "(?i)日本|新加坡|美国|JP|SG|US"
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  # 3. 【全球合体大分组】(两个订阅全部节点汇聚)
+  - name: "🚀 全球互联(双订阅合体)"
+    type: select
+    use:
+      - premium_ai_provider
+      - general_provider
+    proxies:
+      - "DIRECT"
+
+  # 4. 【独立订阅查看】订阅 1 全节点
+  - name: "🏷️ 纯净AI订阅全部节点"
+    type: select
+    use:
+      - premium_ai_provider
+
+  # 5. 【独立订阅查看】订阅 2 全节点
+  - name: "⚡ 一般节点全部列表"
+    type: select
+    use:
+      - general_provider
+
+rules:
+  # -------------------- 第 1 梯队：AI 全家桶 (严格走纯净好节点，绝对防封防风控) --------------------
+  - PROCESS-NAME,Antigravity.exe,🤖 纯净AI专用(优质节点)
+  - PROCESS-NAME,language_server.exe,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,antigravity.google,🤖 纯净AI专用(优质节点)
+  - DOMAIN-KEYWORD,gemini,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,gemini.google.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,aistudio.google.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,makersuite.google.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN,alkalimakersuite-pa.clients6.google.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,googleusercontent.com,🤖 纯净AI专用(优质节点)
+
+  - DOMAIN-SUFFIX,anthropic.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,claude.ai,🤖 纯净AI专用(优质节点)
+  - DOMAIN-KEYWORD,anthropic,🤖 纯净AI专用(优质节点)
+
+  - DOMAIN-SUFFIX,openai.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,chatgpt.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,oaistatic.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-KEYWORD,openai,🤖 纯净AI专用(优质节点)
+
+  - PROCESS-NAME,Cursor.exe,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,cursor.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,cursor.sh,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,perplexity.ai,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,groq.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,mistral.ai,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,together.ai,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,midjourney.com,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,huggingface.co,🤖 纯净AI专用(优质节点)
+  - DOMAIN-SUFFIX,deepl.com,🤖 纯净AI专用(优质节点)
+
+  # -------------------- 第 2 梯队：国内主流游戏进程 (100% 直连，0ms 额外延迟) --------------------
+  - GEOSITE,category-games@cn,DIRECT
+  - PROCESS-NAME,steam.exe,DIRECT
+  - PROCESS-NAME,steamwebhelper.exe,DIRECT
+  - PROCESS-NAME,WeGame.exe,DIRECT
+  - PROCESS-NAME,League of Legends.exe,DIRECT
+  - PROCESS-NAME,Crossfire.exe,DIRECT
+  - PROCESS-NAME,YuanShen.exe,DIRECT
+  - PROCESS-NAME,GenshinImpact.exe,DIRECT
+  - PROCESS-NAME,StarRail.exe,DIRECT
+  - PROCESS-NAME,Naraka.exe,DIRECT
+  - PROCESS-NAME,BlackMythWukong.exe,DIRECT
+  - PROCESS-NAME,DungeonFighter.exe,DIRECT
+  - PROCESS-NAME,VALORANT-Win64-Shipping.exe,DIRECT
+  - DOMAIN-SUFFIX,steamcontent.com,DIRECT
+  - DOMAIN-SUFFIX,cm.steampowered.com,DIRECT
+  - DOMAIN-SUFFIX,wegame.com.cn,DIRECT
+  - DOMAIN-SUFFIX,tencent.com,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-SUFFIX,mihoyo.com,DIRECT
+  - DOMAIN-SUFFIX,hoyoverse.com,DIRECT
+
+  # -------------------- 第 3 梯队：B 站音视频全站 (100% 直连，免跑代理流量) --------------------
+  - GEOSITE,bilibili,DIRECT
+  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+  - DOMAIN-SUFFIX,bilivideo.com,DIRECT
+  - DOMAIN-SUFFIX,hdslb.com,DIRECT
+  - DOMAIN-SUFFIX,biliapi.net,DIRECT
+  - DOMAIN-KEYWORD,bilibili,DIRECT
+
+  # -------------------- 第 4 梯队：国内政务、银行、公考与民生系统 --------------------
+  - DOMAIN-SUFFIX,gov.cn,DIRECT
+  - DOMAIN-SUFFIX,scs.gov.cn,DIRECT
+  - DOMAIN-SUFFIX,12306.cn,DIRECT
+  - DOMAIN-SUFFIX,chsi.com.cn,DIRECT
+  - GEOIP,CN,DIRECT
+  - GEOSITE,CN,DIRECT
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,baidu,DIRECT
+  - DOMAIN-KEYWORD,weixin,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,jd,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+
+  # -------------------- 第 5 梯队：日常一般节点主流外网 (走一般/劣质节点，防偷跑好节点流量) --------------------
+  - PROCESS-NAME,Cherry Studio.exe,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,openrouter.ai,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,openrouter,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,stripe.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,stripe.network,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,paypal.com,🌐 日常浏览(一般节点)
+
+  - DOMAIN-SUFFIX,github.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,githubassets.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,githubusercontent.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,github.io,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,github,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,gitlab.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,docker.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,docker.io,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,vercel.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,cloudflare.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,stackoverflow.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,npmjs.com,🌐 日常浏览(一般节点)
+
+  - DOMAIN-KEYWORD,youtube,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,youtube.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,googlevideo.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,ytimg.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,youtu.be,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,netflix.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,nflxvideo.net,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,netflix,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,disneyplus.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,spotify.com,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,spotify,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,twitch.tv,🌐 日常浏览(一般节点)
+
+  - DOMAIN-SUFFIX,x.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,twitter.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,twimg.com,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,twitter,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,telegram.org,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,t.me,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,telegram,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,discord.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,discord.gg,🌐 日常浏览(一般节点)
+  - DOMAIN-KEYWORD,discord,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,reddit.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,redd.it,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,instagram.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,facebook.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,threads.net,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,whatsapp.com,🌐 日常浏览(一般节点)
+
+  - DOMAIN-SUFFIX,wikipedia.org,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,wikimedia.org,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,notion.so,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,notion.site,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,medium.com,🌐 日常浏览(一般节点)
+  - DOMAIN-SUFFIX,duckduckgo.com,🌐 日常浏览(一般节点)
+
+  # -------------------- 第 6 梯队：GFW 自动拦截库兜底 --------------------
+  - GEOSITE,gfw,🌐 日常浏览(一般节点)
+
+  # -------------------- 第 7 梯队：全量兜底 --------------------
+  - MATCH,🌐 日常浏览(一般节点)
+`;
+
+    function generateConfig() {
+      const premiumUrl = document.getElementById('premiumUrl').value.trim();
+      const generalUrl = document.getElementById('generalUrl').value.trim();
+      const mixedPort = document.getElementById('mixedPort').value.trim() || '7897';
+      const aiFilter = document.getElementById('aiFilter').value.trim() || '(?i)美国|日本|新加坡|US|JP|SG';
+
+      if (!premiumUrl || !generalUrl) {
+        alert('请完整填写两个订阅链接！');
+        return;
+      }
+
+      let config = YAML_TEMPLATE
+        .replace(/{{PREMIUM_URL}}/g, premiumUrl)
+        .replace(/{{GENERAL_URL}}/g, generalUrl)
+        .replace(/{{MIXED_PORT}}/g, mixedPort)
+        .replace(/{{AI_FILTER}}/g, aiFilter);
+
+      document.getElementById('outputYaml').value = config;
+      document.getElementById('resultArea').classList.remove('hidden');
+      document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyConfig() {
+      const textarea = document.getElementById('outputYaml');
+      textarea.select();
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        alert('✅ 配置文件内容已成功复制到剪贴板！');
+      }).catch(err => {
+        alert('复制失败，请手动全选复制。');
+      });
+    }
+
+    function downloadConfig() {
+      const text = document.getElementById('outputYaml').value;
+      if (!text) return;
+      const blob = new Blob([text], { type: 'text/yaml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'dual_fusion.yaml';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
